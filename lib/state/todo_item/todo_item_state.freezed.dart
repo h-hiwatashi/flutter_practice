@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'todo_state.dart';
+part of 'todo_item_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,27 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Todo {
+mixin _$TodoItemSate {
   int? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   bool? get isDone => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TodoCopyWith<Todo> get copyWith => throw _privateConstructorUsedError;
+  $TodoItemSateCopyWith<TodoItemSate> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TodoCopyWith<$Res> {
-  factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
-      _$TodoCopyWithImpl<$Res, Todo>;
+abstract class $TodoItemSateCopyWith<$Res> {
+  factory $TodoItemSateCopyWith(
+          TodoItemSate value, $Res Function(TodoItemSate) then) =
+      _$TodoItemSateCopyWithImpl<$Res, TodoItemSate>;
   @useResult
   $Res call({int? id, String? title, bool? isDone});
 }
 
 /// @nodoc
-class _$TodoCopyWithImpl<$Res, $Val extends Todo>
-    implements $TodoCopyWith<$Res> {
-  _$TodoCopyWithImpl(this._value, this._then);
+class _$TodoItemSateCopyWithImpl<$Res, $Val extends TodoItemSate>
+    implements $TodoItemSateCopyWith<$Res> {
+  _$TodoItemSateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -67,18 +69,22 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
 }
 
 /// @nodoc
-abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
-  factory _$$_TodoCopyWith(_$_Todo value, $Res Function(_$_Todo) then) =
-      __$$_TodoCopyWithImpl<$Res>;
+abstract class _$$_TodoItemSateCopyWith<$Res>
+    implements $TodoItemSateCopyWith<$Res> {
+  factory _$$_TodoItemSateCopyWith(
+          _$_TodoItemSate value, $Res Function(_$_TodoItemSate) then) =
+      __$$_TodoItemSateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? id, String? title, bool? isDone});
 }
 
 /// @nodoc
-class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
-    implements _$$_TodoCopyWith<$Res> {
-  __$$_TodoCopyWithImpl(_$_Todo _value, $Res Function(_$_Todo) _then)
+class __$$_TodoItemSateCopyWithImpl<$Res>
+    extends _$TodoItemSateCopyWithImpl<$Res, _$_TodoItemSate>
+    implements _$$_TodoItemSateCopyWith<$Res> {
+  __$$_TodoItemSateCopyWithImpl(
+      _$_TodoItemSate _value, $Res Function(_$_TodoItemSate) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +94,7 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
     Object? title = freezed,
     Object? isDone = freezed,
   }) {
-    return _then(_$_Todo(
+    return _then(_$_TodoItemSate(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -107,8 +113,8 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
 
 /// @nodoc
 
-class _$_Todo implements _Todo {
-  const _$_Todo({this.id, this.title, this.isDone = false});
+class _$_TodoItemSate implements _TodoItemSate {
+  const _$_TodoItemSate({this.id, this.title, this.isDone = false});
 
   @override
   final int? id;
@@ -120,14 +126,14 @@ class _$_Todo implements _Todo {
 
   @override
   String toString() {
-    return 'Todo(id: $id, title: $title, isDone: $isDone)';
+    return 'TodoItemSate(id: $id, title: $title, isDone: $isDone)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Todo &&
+            other is _$_TodoItemSate &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.isDone, isDone) || other.isDone == isDone));
@@ -139,13 +145,15 @@ class _$_Todo implements _Todo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TodoCopyWith<_$_Todo> get copyWith =>
-      __$$_TodoCopyWithImpl<_$_Todo>(this, _$identity);
+  _$$_TodoItemSateCopyWith<_$_TodoItemSate> get copyWith =>
+      __$$_TodoItemSateCopyWithImpl<_$_TodoItemSate>(this, _$identity);
 }
 
-abstract class _Todo implements Todo {
-  const factory _Todo(
-      {final int? id, final String? title, final bool? isDone}) = _$_Todo;
+abstract class _TodoItemSate implements TodoItemSate {
+  const factory _TodoItemSate(
+      {final int? id,
+      final String? title,
+      final bool? isDone}) = _$_TodoItemSate;
 
   @override
   int? get id;
@@ -155,5 +163,6 @@ abstract class _Todo implements Todo {
   bool? get isDone;
   @override
   @JsonKey(ignore: true)
-  _$$_TodoCopyWith<_$_Todo> get copyWith => throw _privateConstructorUsedError;
+  _$$_TodoItemSateCopyWith<_$_TodoItemSate> get copyWith =>
+      throw _privateConstructorUsedError;
 }

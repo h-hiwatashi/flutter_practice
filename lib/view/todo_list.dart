@@ -1,38 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/state/todo/todo_state.dart';
-import 'package:flutter_practice/todo_detail.dart';
+import 'package:flutter_practice/state/todo_item/todo_item_state.dart';
+import 'package:flutter_practice/view/todo_detail.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TodoList extends StatefulWidget {
-  const TodoList({super.key, required this.title});
+class TodoList extends ConsumerWidget {
+  TodoList({Key? key, required this.title}) : super(key: key);
   final String title;
-  @override
-  State<TodoList> createState() => _TodoListState();
-}
-
-class _TodoListState extends State<TodoList> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   final todoListData = [
-    const Todo(id: 0, title: 'list1', isDone: false),
-    const Todo(id: 0, title: 'list2', isDone: false),
-    const Todo(id: 0, title: 'list3', isDone: false),
+    const TodoItemSate(id: 0, title: 'list1', isDone: false),
+    const TodoItemSate(id: 0, title: 'list2', isDone: false),
+    const TodoItemSate(id: 0, title: 'list3', isDone: false),
   ];
 
-  late List<Widget> todoListWidgets =
-      todoListData.map((e) => _createCard(e)).toList();
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    late List<Widget> todoListWidgets =
+        todoListData.map((e) => _createCard(context, e)).toList();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Center(
         child: Column(
@@ -41,14 +29,14 @@ class _TodoListState extends State<TodoList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (() {}),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  Widget _createCard(Todo item) {
+  Widget _createCard(BuildContext context, TodoItemSate item) {
     String title = item.title ?? '';
     return Center(
       child: Card(
