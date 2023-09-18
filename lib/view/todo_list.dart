@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/state/todo_item/todo_item_state.dart';
 import 'package:flutter_practice/view/todo_detail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:isar/isar.dart';
 
 class TodoList extends ConsumerWidget {
-  TodoList({Key? key, required this.title}) : super(key: key);
+  TodoList({Key? key, required this.title, required this.isar})
+      : super(key: key);
   final String title;
+  final Isar isar;
 
   final todoListData = [
     const TodoItemSate(id: 0, title: 'list1', isDone: false),
@@ -51,12 +54,22 @@ class TodoList extends ConsumerWidget {
             );
           },
           child: SizedBox(
-            width: 300,
-            height: 100,
-            child: Column(
-              children: [Text(title)],
-            ),
-          ),
+              width: 300,
+              height: 100,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    )
+                  ],
+                ),
+              )),
         ),
       ),
     );
