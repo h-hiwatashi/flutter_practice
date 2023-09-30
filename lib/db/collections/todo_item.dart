@@ -8,9 +8,10 @@ part 'todo_item.g.dart';
 class TodoItem {
   Id id = Isar.autoIncrement;
   final category = IsarLink<Category>();
+  late String title;
   late String content;
   late DateTime createdAt;
   @Index()
   late DateTime updatedAt;
-  late bool isDone;
+  late bool isDone = false;
 }
