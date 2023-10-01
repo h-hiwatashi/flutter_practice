@@ -34,9 +34,11 @@ class TodoList extends ConsumerWidget {
         title: Text(title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: todoListWidgets,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: todoListWidgets,
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
