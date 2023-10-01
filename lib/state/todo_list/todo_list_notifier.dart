@@ -39,18 +39,36 @@ class TodoListNotifier extends StateNotifier<ResponseState<TodoListState>> {
 
   Future<void> _initialLoad(Isar isar) async {
     try {
-      final bytes = await rootBundle.load('assets/initial_data.json');
+      //putAll ver.
+      // final bytes = await rootBundle.load('assets/todo_items.json');
+      // final jsonStr = const Utf8Decoder().convert(bytes.buffer.asUint8List());
+      // final json = jsonDecode(jsonStr) as List;
+      // final now = DateTime.now();
+      // final todoItems = json.map((e) => TodoItem()
+      //   ..title = e['title']
+      //   ..content = e['content']
+      //   ..createdAt = now
+      //   ..updatedAt = now
+      //   ..isDone = e['isDone']);
+      // isar.writeTxn(() async {
+      //   await isar.todoItems.putAll((todoItems.toList()));
+      // });
+
+      final bytes = await rootBundle.load('assets/todo_items.json');
       final jsonStr = const Utf8Decoder().convert(bytes.buffer.asUint8List());
       final json = jsonDecode(jsonStr) as List;
-      final now = DateTime.now();
-      final todoItems = json.map((e) => TodoItem()
-        ..title = e['title']
-        ..content = e['content']
-        ..createdAt = now
-        ..updatedAt = now
-        ..isDone = e['isDone']);
+      final now = DateTime.now().microsecondsSinceEpoch;
+      final importJson = json
+          .map((e) => {
+                'title': e['title'],
+                'content': e['content'],
+                'createdAt': now,
+                'updatedAt': now,
+                'isDone': e['isDone']
+              })
+          .toList();
       isar.writeTxn(() async {
-        await isar.todoItems.putAll((todoItems.toList()));
+        await isar.todoItems.importJson(importJson);
       });
     } catch (e) {
       debugPrint(e.toString());
@@ -60,18 +78,11 @@ class TodoListNotifier extends StateNotifier<ResponseState<TodoListState>> {
   init() async {
     state = const ResponseState.loading();
     Isar isar = await openIsar();
-    // final directory = await path.getApplicationDocumentsDirectory();
-    // final isar = Isar.openSync(
-    //   [
-    //     TodoItemSchema,
-    //     CategorySchema,
-    //   ],
-    //   directory: directory.path,
-    // );
-    // if (isar == null) {
-    //   throw 'Could not open Isar instance.';
-    // }
-    await _initialLoad(isar);
+    final isExistData = await isar.todoItems.count() > 0;
+    if (!isExistData) {
+      debugPrint('Loading ...');
+      await _initialLoad(isar);
+    }
     final repository = TodoItemRepository(isar);
     final todoItemsList = await repository.findTodoItems();
     final convertedValue = todoItemsList
