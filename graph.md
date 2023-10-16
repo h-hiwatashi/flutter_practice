@@ -1,4 +1,4 @@
-Analyzing /Users/hiro/workspace/flutter_practice/practice/flutter_practice ...
+```mermaid
 flowchart TB
   subgraph Arrows
     direction LR
@@ -22,3 +22,4 @@ flowchart TB
   TodoList((TodoList));
 
   todoListProvider ==> TodoList;
+```
