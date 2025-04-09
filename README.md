@@ -1,6 +1,6 @@
 # flutter_practice
 
-A new Flutter project.
+定番のアーキテクチャを勉強するための ripository.
 
 ## Getting Started
 
